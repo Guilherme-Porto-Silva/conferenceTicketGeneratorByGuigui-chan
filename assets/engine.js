@@ -66,20 +66,29 @@ function errorTester(){
     let errorSpoted = false;
 
     if(largeFileError()){
+        
         maxSize.textContent = "File too large. Cut your photo, take its screenshot, do your tricks to make it smaller.";
+        
         maxSize.classList.add("error");
+        
         errorSpoted = true;
     }
 
     if(invalidFileTypeError()){
+        
         maxSize.textContent = "Upload a file.jpeg or a file.png, so we can place it in your ticket.";
+        
         maxSize.classList.add("error");
+        
         errorSpoted = true;
     }
 
    if(invalidEmailError()){
+       
     emailSpan.textContent = "Enter a valid email adress, please. Its very helpfull.";
+       
     emailSpan.classList.add("error");
+       
     errorSpoted = true;
    }
 
@@ -88,10 +97,27 @@ function errorTester(){
 }
 
 function clearErrors() {
+    
     maxSize.textContent = "Upload your photo (JPG or PNG, max size: 500KB).";
+    
     maxSize.classList.remove("error");
+    
     emailSpan.textContent = "";
+    
     emailSpan.classList.remove("error");
+}
+
+function photoManager(){
+
+    const file = uploadedImage.files[0];
+
+    const imageUrl = URL.createObjectURL(file);// Convert the file to a URL
+
+    photoReciver.src = imageUrl;
+
+    photoReciver.style.display = "block";
+
+    photoReciver.alt = `photograph of ${nameInput.value}`;
 }
 
 let hasAlredyErrored = false;
@@ -111,8 +137,7 @@ displaysEmailAddress.textContent = emailInput.value;
 
 displaysGitHubUsername.textContent = GitHubInput.value;
 
-    photoReciver.src = uploadedImage;
-    photoReciver.alt = `photograph of ${displaysFullName[0]}`;
+photoManager();
 
     currentChanger();
 
