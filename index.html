@@ -12,12 +12,12 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body class="column">
-  <img src="./assets/images/pattern-lines.svg" alt="" id="pattern-lines">
+  <img src="./assets/images/pattern-lines.svg" alt="" id="pattern-lines" aria-hidden="true">
   
-  <img src="./assets/images/pattern-squiggly-line-top.svg" alt="" id="squiggly-top">
+  <img src="./assets/images/pattern-squiggly-line-top.svg" alt="" id="squiggly-top" aria-hidden="true">
 
   <div class="row">
-    <img src="./assets/images/logo-mark.svg" alt="">
+    <img src="./assets/images/logo-mark.svg" alt="" aria-hidden="true">
     <h2>
       Coding Conf
     </h2>
@@ -35,7 +35,7 @@
       Secure your spot at next year's biggest coding conference.
     </span>
 
-    <h2>
+    <h2 id="UploadAvatar">
       Upload Avatar
     </h2>
 
@@ -43,7 +43,7 @@
 
       <img src="./assets/images/icon-upload.svg" alt="icon-upload">
 
-      <span>
+      <span aria-labelledby="UploadAvatar" aria-describedby="maxSizeSpan">
         Drag and drop or click to upload
       </span>
 
@@ -53,27 +53,27 @@
 
     <div id="maxSize" class="row">
 
-      <img src="./assets/images/icon-info.svg" alt="">
+      <img src="./assets/images/icon-info.svg" alt="" aria-hidden="true">
 
-      <span>
+      <span id="maxSizeSpan">
         Upload your photo (JPG or PNG, max size: 500KB).
       </span>
 
     </div>
 
-    <form action="">
+    <form method="post">
 
       <legend>
         Full Name
       </legend>
 
-      <input type="text" id="nameInput">
+      <input type="text" id="nameInput" aria-required="true" required>
 
       <legend>
         Email Address
       </legend>
       
-      <input type="email" id="emailInput" placeholder="example@email.com">
+      <input type="email" id="emailInput" placeholder="example@email.com" aria-required="true" required>
 
       <span id="emailSpan"></span>
 
@@ -81,11 +81,11 @@
         GitHub Username
       </legend>
       
-      <input type="text" id="GitHubInput" placeholder="@yourusername">
+      <input type="text" id="GitHubInput" placeholder="@yourusername" aria-required="true" required>
 
     </form>
 
-    <button onclick="ticketGenerate()">
+    <button onclick="ticketGenerate()" role="button">
       Generate My Ticket
     </button>
 
@@ -93,7 +93,7 @@
 
   <div id="ticket">
 
-    <h1>
+    <h1 role="alert">
       Congrats, <b class="displaysFullName"></b>! Your ticket is ready.
     </h1>
 
@@ -125,15 +125,15 @@
 
     </div>
 
-    <button onclick="currentChanger()">
+    <button onclick="currentChanger()" role="button">
       Wish generating another?
     </button>
 
   </div>
 
-  <img src="./assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg" alt="" class="mobile">
+  <img src="./assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg" alt="" class="mobile" aria-hidden="true">
 
-  <img src="./assets/images/pattern-squiggly-line-bottom-desktop.svg" alt="" class="desktop">
+  <img src="./assets/images/pattern-squiggly-line-bottom-desktop.svg" alt="" class="desktop" aria-hidden="true">
 
   <footer>
 
@@ -147,7 +147,7 @@
 
   </footer>
 
-  <script src="./assets/engine.js"></script>
+  <script src="./assets/engine.js" aria-hidden="true"></script>
   
 </body>
 </html>
