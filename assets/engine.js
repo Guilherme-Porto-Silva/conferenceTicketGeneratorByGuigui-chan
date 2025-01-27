@@ -20,8 +20,6 @@ const displaysEmailAddress = document.getElementById("displaysEmailAddress");
 
 const photoReciver = document.getElementById("participantPhoto");
 
-const displaysFullName = document.getElementsByClassName("displaysFullName");
-
 function currentChanger() {
 
     if(form.classList.contains("current")){
@@ -66,29 +64,29 @@ function errorTester(){
     let errorSpoted = false;
 
     if(largeFileError()){
-        
+
         maxSize.textContent = "File too large. Cut your photo, take its screenshot, do your tricks to make it smaller.";
-        
+
         maxSize.classList.add("error");
-        
+
         errorSpoted = true;
     }
 
     if(invalidFileTypeError()){
-        
+
         maxSize.textContent = "Upload a file.jpeg or a file.png, so we can place it in your ticket.";
-        
+
         maxSize.classList.add("error");
         
         errorSpoted = true;
     }
 
    if(invalidEmailError()){
-       
+
     emailSpan.textContent = "Enter a valid email adress, please. Its very helpfull.";
-       
+
     emailSpan.classList.add("error");
-       
+
     errorSpoted = true;
    }
 
@@ -97,13 +95,13 @@ function errorTester(){
 }
 
 function clearErrors() {
-    
+
     maxSize.textContent = "Upload your photo (JPG or PNG, max size: 500KB).";
-    
+
     maxSize.classList.remove("error");
-    
+
     emailSpan.textContent = "";
-    
+
     emailSpan.classList.remove("error");
 }
 
@@ -120,6 +118,15 @@ function photoManager(){
     photoReciver.alt = `photograph of ${nameInput.value}`;
 }
 
+function nameFixer(){
+
+    const dfn = document.getElementsByClassName("displaysFullName");
+
+    const displaysFullName = Array.from(dfn);
+
+    return displaysFullName;
+}
+
 let hasAlredyErrored = false;
 
 function ticketGenerate(){
@@ -131,7 +138,7 @@ function ticketGenerate(){
         return;
     }
 
-for (let nameReciver of displaysFullName) nameReciver.textContent = nameInput.value;// so it sets to both
+for (let nameReciver of nameFixer()) nameReciver.textContent = nameInput.value;
 
 displaysEmailAddress.textContent = emailInput.value;
 
