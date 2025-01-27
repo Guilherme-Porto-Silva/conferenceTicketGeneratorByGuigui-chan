@@ -4,6 +4,7 @@
     text-align: center;
     box-sizing: border-box;
     color: hsl(0, 0%, 100%);
+    font-family: "Inconsolata-VariableFont";
 }
 
 body{
