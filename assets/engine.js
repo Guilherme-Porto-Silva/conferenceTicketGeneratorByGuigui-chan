@@ -131,6 +131,8 @@ let hasAlredyErrored = false;
 
 function ticketGenerate(){
 
+    form.preventDefault();
+
     if(errorTester()){
 
         hasAlredyErrored = true;
