@@ -1,86 +1,139 @@
 *{
+    text-align: center;
     margin: 0;
     padding: 0;
-    text-align: center;
-    box-sizing: border-box;
     color: hsl(0, 0%, 100%);
-    font-family: "Inconsolata-VariableFont";
+    overflow-wrap: break-word;
 }
 
 body{
-    position: relative;
-    padding: 1%;
-    height: 100vh;
-    background-position: center;
     background-image: url("./assets/images/background-mobile.png");
-    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
+    padding: 10px;
+    height: 100vh;
     overflow: hidden;
 }
 
-span{
+section, #emailAddressSpan, #bottom-desktop{ display: none; }
+
+p{
     opacity: 0.7;
-    font-size: 80%;
+    width: 90%;
+    margin: 5%;
 }
-  
+
+label{
+    border-radius: 1cm;
+    border-style: dotted;
+    margin: 5px;
+}
+
+label, input{
+    border-width: 3px;
+    border-color: hsl(0, 0%, 100%);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+label, input, #ticket{ background-color: #33334d; }
+
+form, .row, .column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+form{
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+legend{ opacity: 0.9; }
+
+legend, span{ margin: 10px 0; }
+
+legend, input{ text-align: left; }
+
+input{
+    border-radius: 1mm;
+    font-size: 110%;
+    background: none;
+    border-style: solid;
+}
+
 button{
-    background-color: hsl(7, 88%, 67%);
+    background-color: hsl(7, 71%, 60%);
     color: hsl(248, 70%, 10%);
-    padding: 1.5rem;
+    padding: 1rem;
+    border-radius: 5mm;
+    width: 60%;
 }
 
 button:hover{
     background-color: gold;
-    border: 3px solid black;
-    outline: 3px solid aliceblue;
-}
-  
-button, label, form > *{
-    cursor: pointer;
-    font-size: 125%;
+    transition: 1s;
 }
 
-button, label{ border-radius: 1cm; }
-
-label{
-    outline: 3px dotted hsl(0, 0%, 100%);
-    padding: 5%;
-}
-
-label:hover{ background-color: hsl(0, 0%, 100% 0.4); }
-
-button:hover, label:hover, input:hover, a:hover{ transition: all 0.2s ease-in-out; }
-
-form > *{ margin: 1%; }
-
-a, .displaysFullName, #displaysEmailAddress{
-    background: linear-gradient(to right, hsl(7, 86%, 67%), hsl(0, 0%, 100%));
+a, .displaysFullName{
+    background: linear-gradient(to right hsl(7, 86%, 67%) hsl(0, 0%, 100%));
     background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
 }
 
-.row, .column, #form.current, #ticket.current{
+a:hover{
+    background: linear-gradient(to right gold hsl(7, 86%, 67%));
+    background-clip: text;
+    transition: 1s;
+}
+
+.row{
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+}
+
+.attribution {
+    margin: 10px;
+    font-size: 80%;
+}
+
+.error{ color: tomato; }
+
+.displaysEmailAddress{ color: hsl(7, 86%, 67%); }
+
+#userPhotoSpan, #emailAddressSpan{
+    font-size: small;
+    opacity: 0.6;
+}
+
+#emailAddressSpan.error{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: 10px;
 }
 
-.row, .column{ justify-content: center; }
-
-.row { flex-direction: row; }
-
-.error { color: tomato; }
-
-#form, #ticket{
-    justify-content: space-around;
-    height: 80%;
-    display: none;
+#pattern-lines, #squiggly-line-top, #bottom-mobile-tablet, #bottom-desktop{
+    position: absolute;
+    left: 0;
+    z-index: -1;
 }
 
-#GeneratedTicket, #GeneratedTicket::before, #GeneratedTicket::after{ border-radius: 10px; }
+#pattern-lines, #squiggly-line-top{ top: 0; }
 
-#GeneratedTicket{
+#squiggly-line-top{
+    left: auto;
+    right: 0;
+}
+
+#bottom-mobile-tablet, #bottom-desktop{ bottom: 0; }
+
+#ticket, #ticket::before, #GeneratedTicket::after{ border-radius: 10px; }
+
+#ticket{
+    margin: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
     background-color: #33334d;
@@ -88,12 +141,12 @@ a, .displaysFullName, #displaysEmailAddress{
     position: relative;
 }
 
-#GeneratedTicket::before, #GeneratedTicket::after {
+#ticket::before, #ticket::after {
     content: "";
     position: absolute;
     }
 
-#GeneratedTicket::before{ /* White border */
+#ticket::before{ /* White border */
   top: -5px;
   left: -5px;
   right: -5px;
@@ -101,7 +154,7 @@ a, .displaysFullName, #displaysEmailAddress{
   border: 2px solid #fff;
 }
 
-#GeneratedTicket::after { /* Slightly darker background */
+#ticket::after { /* Slightly darker background */
     left: -10px;
     right: -10px;
     bottom: -10px;
@@ -109,34 +162,24 @@ a, .displaysFullName, #displaysEmailAddress{
     clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); /* Rounded rectangle shape */
   }
 
-  #pattern-lines, #squiggly-top, .desktop, .mobile{
-    position: absolute;
-    z-index: -1;
-}
-  
-  #pattern-lines{
-      top: 0;
-      width: 100%;
-  }
+@media screen and (min-width: 768px) {
 
-   .desktop, .mobile{/* down decoy */
-    left: 5px;
-    bottom: 5px;
-    width: min-content;
+    body{
+        background-image: url("./assets/images/background-tablet.png");
+        font-size: 150%;
+    }
+
+    button{
+        font-size: 110%;
+        width: 45%;
+    }
 }
 
-#squiggly-top{
-    top: 10px;
-    right: 5px;
+@media screen and (min-width: 1040px) {
+
+    body{ background-image: url("./assets/images/background-desktop.png"); }
+
+    #bottom-mobile-tablet{ display: none; }
+
+     #bottom-desktop{ display: block; }
 }
-
-  .desktop, #imageInput{ display: none; }
-
-  @media screen and (min-width: 768px) {
-    .mobile{ display: none; }
-    .desktop{ display: inline; }
-    *{ font-size: larger; }
-    body{ background-image: url("./assets/images/background-tablet.png"); }
-  }
-
-  @media screen and (min-width: 1400px) { body{ background-image: url("./assets/images/background-desktop.png"); } }
