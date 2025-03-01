@@ -1,123 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
   <title>Frontend Mentor | Conference ticket generator</title>
 
-  <link href="./assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="column">
-  <img src="./assets/images/pattern-lines.svg" alt="" id="pattern-lines" aria-hidden="true">
-  
-  <img src="./assets/images/pattern-squiggly-line-top.svg" alt="" id="squiggly-top" aria-hidden="true">
+
+  <img src="./assets/images/pattern-lines.svg" alt="" id="pattern-lines">
+
+  <img src="./assets/images/pattern-squiggly-line-top.svg" alt="" id="squiggly-line-top">
 
   <div class="row">
-    <img src="./assets/images/logo-mark.svg" alt="" aria-hidden="true">
-    <h2>
-      Coding Conf
-    </h2>
+
+    <img src="./assets/images/logo-mark.svg" alt="">
+
+    <h2> Coding Conf </h2>
+
   </div>
 
-  <div id="form" class="current">
+  <!-- Form starts -->
 
-    <h1>
-      <b>
-        Your Journey to Coding Conf 2025 Starts Here!
-      </b>
-    </h1>
+  <section class="column">
 
-    <span>
-      Secure your spot at next year's biggest coding conference.
-    </span>
+  <h1> Your Journey to Coding Conf 2025 Starts Here! </h1>
 
-    <h2 id="UploadAvatar">
-      Upload Avatar
-    </h2>
+  <p> Secure your spot at next year's biggest coding conference. </p>
 
-    <label for="imageInput" class="column">
+  <div class="column">
 
-      <img src="./assets/images/icon-upload.svg" alt="icon-upload">
+    <legend> Upload Avatar </legend>
 
-      <span aria-labelledby="UploadAvatar" aria-describedby="maxSizeSpan">
-        Drag and drop or click to upload
-      </span>
+    <label for="userPhotoInput" class="column">
 
-      <input accept="image/*" type="file" id="imageInput">
+      <img src="./assets/images/icon-upload.svg" alt="">
+
+      <p> Drag and drop or click to upload </p>
 
     </label>
 
-    <div id="maxSize" class="row">
+    <input type="image" style="display: none;" id="userPhotoInput">
 
-      <img src="./assets/images/icon-info.svg" alt="" aria-hidden="true">
+    <div class="row">
 
-      <span id="maxSizeSpan">
-        Upload your photo (JPG or PNG, max size: 500KB).
+      <img src="./assets/images/icon-info.svg" alt="">
+
+      <span id="userPhotoSpanId">
+             Upload your photo (JPG or PNG, max size: 500KB).
       </span>
 
     </div>
 
-    <form method="post">
-
-      <legend>
-        Full Name
-      </legend>
-
-      <input accept="text" type="text" id="nameInput" aria-required="true" maxlength="20" required>
-
-      <legend>
-        Email Address
-      </legend>
-      
-      <input accept="text" type="email" id="emailInput" placeholder="example@email.com" aria-required="true" maxlength="20" required>
-
-      <span id="emailSpan"></span>
-
-      <legend>
-        GitHub Username
-      </legend>
-      
-      <input accept="text" type="text" id="GitHubInput" placeholder="@yourusername" aria-required="true" maxlength="20" required>
-
-    </form>
-
-    <button onclick="ticketGenerate()" role="button">
-      Generate My Ticket
-    </button>
-
   </div>
 
-  <div id="ticket">
+  <form action="">
 
-    <h1 role="alert">
-      Congrats, <b class="displaysFullName"></b>! Your ticket is ready.
-    </h1>
+    <div>
 
-    <span>
-      We've emailed your ticket to <b id="displaysEmailAddress"></b> and will send updates in the run up to the event.
-    </span>
+      <legend> Full Name </legend>
 
-    <div id="GeneratedTicket">
+      <input type="text" placeholder="Guilherme Porto e Silva" id="nameInput">
+  
+      </div>
+
+    <div>
+
+      <legend> Email Address </legend>
+
+      <input type="email" placeholder="example@email.com" id="emailAddressInput">
+
+      <div id="emailAddressSpanId">
+
+        <img src="./assets/images/icon-info.svg" alt="">
+
+        <span>
+               Please, enter a valid email adress.
+      </span>
+
+    </div>
+  
+      </div>
+
+    <div>
+
+      <legend> GitHub Username </legend>
+
+      <input type="text" placeholder="@yourusername" id="GitHubUsernameInput">
+  
+      </div>
+
+  </form>
+
+ <button onclick="generateTicket()"> Generate My Ticket </button>
+
+</section>
+
+  <!-- Form ends -->
+
+
+
+  <!-- Generated tickets starts -->
+
+  <section>
+
+    <h1> Congrats, <span class="displaysFullName"></span>! Your ticket is ready. </h1>
+
+    <p>
+          We've emailed your ticket to <span class="displaysEmailAddress"></span> and will send updates in the run up to the event.
+    </p>
+
+    <div id="ticket" class="column">
 
       <div class="row">
 
-        <img src="" alt="" id="participantPhoto">
+        <img src="./assets/images/logo-mark.svg" alt="">
 
         <div class="column">
 
-          <h1>
-            Coding Conf
-          </h1>
+        <h1> Coding Conf </h1>
 
-          <span id="displaysGitHubUsername"></span>
+        <p> Jan 31, 2025 / Austin, TX </p>
 
-          <span>
-            Jan 31, 2025 / Austin, TX
-          </span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <img src="" alt="" id="displaysUserPhoto">
+
+        <div class="column">
+
+        <h1 class="displaysFullName"></h1>
+
+        <div class="row">
+
+          <img src="./assets/images/icon-github.svg" alt="">
+
+          <p id="displaysGitHubUsername"></p>
+
+        </div>
 
         </div>
 
@@ -125,29 +154,25 @@
 
     </div>
 
-    <button onclick="currentChanger()" role="button">
-      Wish generating another?
-    </button>
+    <button onclick="refresher()"> Generate a New Ticket </button>
+
+</section>
+
+  <!-- Generated tickets ends -->
+  
+  <div class="column attribution">
+
+    <h3> Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. </h3>
+
+    <h3> Coded by <a href="https://github.com/Guilherme-Porto-Silva">Guigui-chan</a>. </h3>
 
   </div>
 
-  <img src="./assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg" alt="" class="mobile" aria-hidden="true">
+  <img src="./assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg" alt="" id="bottom-mobile-tablet">
 
-  <img src="./assets/images/pattern-squiggly-line-bottom-desktop.svg" alt="" class="desktop" aria-hidden="true">
+  <img src="./assets/images/pattern-squiggly-line-bottom-desktop.svg" alt=""  id="bottom-desktop">
 
-  <footer>
+  <script src="./assets/engine.js"></script>
 
-    <h5>
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    </h5>
-
-    <h5>
-      Coded by <a href="https://github.com/Guilherme-Porto-Silva">Guigui-chan</a>.
-    </h5>
-
-  </footer>
-
-  <script src="./assets/engine.js" aria-hidden="true"></script>
-  
 </body>
 </html>
