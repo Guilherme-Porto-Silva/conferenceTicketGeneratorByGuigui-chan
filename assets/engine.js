@@ -1,49 +1,50 @@
-const form = document.getElementById("form");
+const sections = Array.from(document.querySelectorAll("section"));
 
-const ticket = document.getElementById("ticket");
+const labelIcon = sections[0].querySelector("label img");
 
-const uploadedImage = document.getElementById("imageInput");
+const nameDisplayers = Array.from(sections[1].getElementsByClassName("displaysFullName"));
 
-const maxSize = document.getElementById("maxSize");
+const emailDisplayers = Array.from(sections[1].getElementsByClassName("displaysEmailAddress"));
 
-const nameInput = document.getElementById("nameInput");
+const userPhotoSpan = document.getElementById("userPhotoSpanId");
 
-const emailInput = document.getElementById("emailInput");
+const userPhotoDisplayer = document.getElementById("displaysUserPhoto");
 
-const emailSpan = document.getElementById("emailSpan");
+const GitHubUsernameDisplayer = document.getElementById("displaysGitHubUsername");
 
-const GitHubInput = document.getElementById("GitHubInput");
+const emailSpan = document.getElementById("emailAddressSpanId");
 
-const displaysGitHubUsername = document.getElementById("displaysGitHubUsername");
 
-const displaysEmailAddress = document.getElementById("displaysEmailAddress");
 
-const photoReciver = document.getElementById("participantPhoto");
+function labelIconUpdater() {
 
-function currentChanger() {
+    const userPhoto = URL.from(document.getElementById("userPhotoInput").value);
 
-    if(form.classList.contains("current")){
+     labelIcon.src = userPhoto;
 
-        form.classList.remove("current");
-
-        ticket.classList.add("current");
-    }
-    else{
-
-        ticket.classList.remove("current");
-
-        form.classList.add("current");
-    }
+     labelIcon.alt = "Your photography";
 }
 
-function largeFileError() {
+
+
+function currentChanger() {
+    sections.forEach(section => {
+        section.classList.toggle("column");
+    });
+}
+
+
+
+function largeFileError(uploadedImage) {
 
     const file = uploadedImage.files[0];
 
     return file && file.size > 500000; // 500KB
 }
 
-function invalidFileTypeError() {
+
+
+function invalidFileTypeError(uploadedImage) {
 
     const file = uploadedImage.files[0];
 
@@ -52,109 +53,134 @@ function invalidFileTypeError() {
     return file && !allowedTypes.includes(file.type);
 }
 
-function invalidEmailError(){
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    return !emailPattern.test(emailInput.value.trim());
-}
-
-function errorTester(){
+function photoErrorTester(photo) {
 
     let errorSpoted = false;
 
-    if(largeFileError()){
+    if(largeFileError(photo)){
 
-        maxSize.textContent = "File too large. Cut your photo, take its screenshot, do your tricks to make it smaller.";
+        userPhotoSpan.textContent = "File too large. Cut your photo, take its screenshot, do your tricks to make it smaller.";
 
-        maxSize.classList.add("error");
+        userPhotoSpan.classList.add("error");
 
         errorSpoted = true;
     }
 
-    if(invalidFileTypeError()){
+    if(invalidFileTypeError(photo)){
 
-        maxSize.textContent = "Upload a file.jpeg or a file.png, so we can place it in your ticket.";
+        userPhotoSpan.textContent = "Upload a file.jpeg or a file.png, so we can place it in your ticket.";
 
-        maxSize.classList.add("error");
+        userPhotoSpan.classList.add("error");
         
         errorSpoted = true;
     }
 
-   if(invalidEmailError()){
-
-    emailSpan.textContent = "Enter a valid email adress, please. Its very helpfull.";
-
-    emailSpan.classList.add("error");
-
-    errorSpoted = true;
-   }
-
-        return errorSpoted;
-
+    return errorSpoted;
 }
+
+
+
+function emailErrorTester(email){
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return !emailPattern.test(email);
+}
+
+
+
+function writer(photo, name, email, git) {
+
+    userPhotoDisplayer.src = photo;
+
+    userPhotoDisplayer.alt = `Photograph of ${name}`;
+
+    nameDisplayers.forEach(nameDisplayer => {
+        nameDisplayer.textContent = name;
+    });
+
+    emailDisplayers.forEach(emailDisplayer => {
+        emailDisplayer.textContent = email;
+    });
+
+    GitHubUsernameDisplayer.textContent = git;
+}
+
+
+
+function brusher() {
+
+    labelIcon.src = "./assets/images/icon-upload.svg";
+
+    labelIcon.alt = "";
+
+    userPhotoDisplayer.src = "";
+
+    userPhotoDisplayer.alt = "";
+
+    nameDisplayers.forEach(nameDisplayer => {
+        nameDisplayer.textContent = "";
+    });
+
+    emailDisplayers.forEach(emailDisplayer => {
+        emailDisplayer.textContent = "";
+    });
+
+    GitHubUsernameDisplayer.textContent = "";
+}
+
+
 
 function clearErrors() {
 
-    maxSize.textContent = "Upload your photo (JPG or PNG, max size: 500KB).";
+    userPhotoSpan.textContent = "Upload your photo (JPG or PNG, max size: 500KB).";
 
-    maxSize.classList.remove("error");
-
-    emailSpan.textContent = "";
+    userPhotoSpan.classList.remove("error");
 
     emailSpan.classList.remove("error");
 }
 
-function photoManager(){
 
-    const file = uploadedImage.files[0];
 
-    const imageUrl = URL.createObjectURL(file);// Convert the file to a URL
+function generateTicket(){
 
-    photoReciver.src = imageUrl;
+    document.querySelector("form").preventDefault();
 
-    photoReciver.style.display = "block";
 
-    photoReciver.alt = `photograph of ${nameInput.value}`;
-}
+    const userPhoto = URL.from(document.getElementById("userPhotoInput").value);
+    
+    const name = document.getElementById("nameInput").value;
+    
+    const emailAddress = document.getElementById("emailAddressInput").value.trim();
+    
+    const GitHubUsername = document.getElementById("GitHubUsernameInput").value;
 
-function nameFixer(){
 
-    const dfn = document.getElementsByClassName("displaysFullName");
+    if(photoErrorTester(userPhoto)) return;
 
-    const displaysFullName = Array.from(dfn);
 
-    return displaysFullName;
-}
+    if(emailErrorTester(emailAddress)){
 
-let hasAlredyErrored = false;
-
-function ticketGenerate(){
-
-    form.preventDefault();
-
-    if(errorTester()){
-
-        hasAlredyErrored = true;
+        emailSpan.classList.add("error");
 
         return;
     }
+    
 
-for (let nameReciver of nameFixer()) nameReciver.textContent = nameInput.value;
-
-displaysEmailAddress.textContent = emailInput.value;
-
-displaysGitHubUsername.textContent = GitHubInput.value;
-
-photoManager();
+    writer(userPhoto, name, emailAddress, GitHubUsername);
 
     currentChanger();
 
-    if(hasAlredyErrored){
+     clearErrors();
+}
 
-        hasAlredyErrored = false;
 
-        clearErrors();
-    }
 
+function refresher() {
+
+    brusher();
+
+    currentChanger();
 }
