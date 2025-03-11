@@ -55,7 +55,7 @@ form{
 
 legend{ opacity: 0.9; }
 
-legend, span{ margin: 10px 0; }
+legend, #userPhotoSpanId, #emailAddressSpanId span{ margin: 10px 0; }
 
 legend, input{ text-align: left; }
 
