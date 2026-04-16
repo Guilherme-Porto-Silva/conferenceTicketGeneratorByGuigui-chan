@@ -2,105 +2,111 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <link rel="stylesheet" href="./visual/structure.css">
+
+  <link rel="stylesheet" href="./visual/colors.css">
+
+  <link rel="stylesheet" href="./visual/desktop.css">
+
+  <link rel="stylesheet" href="./visual/tablet.css">
+
+  <link rel="stylesheet" href="./visual/cell.css">
+
+  <link rel="stylesheet" href="./visual/ticket.css">
   
   <title>Frontend Mentor | Conference ticket generator</title>
 
-  <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body class="column">
 
-  <img src="./assets/images/pattern-lines.svg" alt="" id="pattern-lines">
 
-  <img src="./assets/images/pattern-squiggly-line-top.svg" alt="" id="squiggly-line-top">
 
-  <div class="row">
+  <!-- logo and decoys starts -->
 
-    <img src="./assets/images/logo-mark.svg" alt="">
+  <img src="./assets/images/pattern-lines.svg" alt="" id="backgroundLines">
 
-    <strong> Coding Conf </strong>
+  <img src="./assets/images/pattern-squiggly-line-top.svg" alt="" id="topLines">
 
-  </div>
+  <img src="./assets/images/logo-full.svg" alt="" id="topLogo">
+
+  <!-- logo and decoys ends -->
+
+
 
   <!-- Form starts -->
 
   <section class="column">
 
-  <h1> Your Journey to Coding Conf 2025 Starts Here! </h1>
+    <header class="column">
 
-  <p> Secure your spot at next year's biggest coding conference. </p>
+      <h1> <b> Your Journey to Coding Conf 2025 Starts Here! </b> </h1>
 
-  <div class="column">
+      <h2> Secure your spot at next year's biggest coding conference. </h2>
 
-    <legend> Upload Avatar </legend>
+    </header>
 
-    <label for="userPhotoInput" class="column">
+    <main class="column">
 
-      <img src="./assets/images/icon-upload.svg" alt="">
+      <div class="column uploadingSpace">
 
-      <p> Drag and drop or click to upload </p>
+        <img src="./assets/images/icon-upload.svg" alt="">
 
-    </label>
+        <span class="aLittleBiger">Upload Avatar</span>
 
-    <input type="image" style="display: none;" id="userPhotoInput">
+        <label for="imageInput">Drag and drop or click to upload</label>
 
-    <div class="row">
+        <span>Upload your photo (JPG or PNG, max size: 500KB)</span>
 
-      <img src="./assets/images/icon-info.svg" alt="">
+        <input type="file" id="imageInput">
 
-      <span id="userPhotoSpanId">
-             Upload your photo (JPG or PNG, max size: 500KB).
-      </span>
-
-    </div>
-
-  </div>
-
-  <form action="">
-
-    <div>
-
-      <legend> Full Name </legend>
-
-      <input type="text" placeholder="Guilherme Porto e Silva" id="nameInput">
-  
       </div>
 
-    <div>
+      <div class="errorDisplayer row hidden" id="imageErrorDisplayer">
+        
+        <img src="./assets/images/pattern-circle.svg" alt="">
 
-      <legend> Email Address </legend>
+        <span>File too large. Please, upload a photo under 500KB.</span>
 
-      <input type="email" placeholder="example@email.com" id="emailAddressInput">
-
-      <div id="emailAddressSpanId">
-
-        <img src="./assets/images/icon-info.svg" alt="">
-
-        <span role="alert">
-               Please, enter a valid email adress.
-      </span>
-
-    </div>
-  
       </div>
 
-    <div>
+      <form action="" method="post">
 
-      <legend> GitHub Username </legend>
+        <label for="nameInput">Full Name</label>
+        
+        <input type="text" id="nameInput" name="full-name" required>
 
-      <input type="text" placeholder="@yourusername" id="GitHubUsernameInput">
+        <label for="emailInput">Email Address</label>
+        
+        <input type="email" id="emailInput" name="email" required>
+
+        <div class="errorDisplayer row hidden" id="emailErrorDisplayer">
+          
+          <img src="./assets/images/pattern-circle.svg" alt="">
   
-      </div>
+          <span>Please, enter a valid e-mail adress.</span>
+  
+        </div>
 
-  </form>
+        <label for="githubInput">GitHub Username</label>
 
- <button onclick="generateTicket()"> Generate My Ticket </button>
+        <input type="text" id="githubInput" name="github" required>
 
-</section>
+        <button type="submit" onclick="useForm()">Generate My Ticket</button>
+
+      </form>
+
+    </main>
+
+  </section>
 
   <!-- Form ends -->
 
@@ -108,71 +114,82 @@
 
   <!-- Generated tickets starts -->
 
-  <section>
+  <section class="column generated-section hidden"> 
+    
+    <h2>Congrats, <b class="nameDisplayer"></b>! Your ticket is ready.</h2>
 
-    <h1> Congrats, <span class="displaysFullName"></span>! Your ticket is ready. </h1>
+    <h3>We've emailed your ticket to <b id="emailDisplayer"></b> and will send updates in the run up to the event.</h3>
 
-    <p>
-          We've emailed your ticket to <span class="displaysEmailAddress"></span> and will send updates in the run up to the event.
-    </p>
+    <div id="ticket-card">
 
-    <div id="ticket" class="column">
+      <div id="ticket-event-info">
 
-      <div class="row">
+        <img src="./assets/images/logo-full.svg" alt="Coding Conf Logo">
 
-        <img src="./assets/images/logo-mark.svg" alt="">
+        <b>Jan 31, 2025 / Austin, TX</b>
 
-        <div class="column">
+      </div>
+      
+      <div id="ticket-user-info">
 
-        <b> Coding Conf </b>
+        <img src="" alt="User Avatar" class="ticketAvatar">
 
-        <p> Jan 31, 2025 / Austin, TX </p>
+        <div id="user-details">
+
+          <b id="ticketName"></b>
+
+          <p id="ticketGithub"></p>
 
         </div>
 
       </div>
+      
+      <div id="ticket-number-container">
 
-      <div class="row">
-
-        <img src="" alt="" id="displaysUserPhoto">
-
-        <div class="column">
-
-        <b class="displaysFullName"></b>
-
-        <div class="row">
-
-          <img src="./assets/images/icon-github.svg" alt="">
-
-          <p id="displaysGitHubUsername"></p>
-
-        </div>
-
-        </div>
+        <span id="ticketNumber"></span>
 
       </div>
 
     </div>
 
-    <button onclick="refresher()"> Generate a New Ticket </button>
-
-</section>
+  </section>
 
   <!-- Generated tickets ends -->
+
   
-  <aside class="column attribution">
 
-    <span> Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. </span>
+  <!-- Bottom starts -->
 
+  <footer>
+
+    <span> Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. </span> 
+    
     <span> Coded by <a href="https://github.com/Guilherme-Porto-Silva">Guigui-chan</a>. </span>
+  
+  </footer>
 
-  </aside>
+  <img src="./assets/images/pattern-squiggly-line-bottom-desktop.svg" alt="" class="hidden" id="pslb-desktop">
 
-  <img src="./assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg" alt="" id="bottom-mobile-tablet">
+  <img src="./assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg" alt="" class="hidden" id="pslb-mobile-tablet">
 
-  <img src="./assets/images/pattern-squiggly-line-bottom-desktop.svg" alt=""  id="bottom-desktop">
+  <!-- Bottom ends -->
 
-  <script src="./assets/engine.js"></script>
+
+
+  <!-- JavaScript starts -->
+
+  <script src="./engine/formValidation.js"></script>
+
+  <script src="./engine/formFetch.js"></script>
+
+  <script src="./engine/ticketBuilder.js"></script>
+
+  <script src="./engine/sections.js"></script>
+
+  <!-- JavaScript ends -->
+
+
 
 </body>
+
 </html>

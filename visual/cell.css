@@ -1,0 +1,4 @@
+@media screen and (max-width: 450px) {
+
+    body{ background: url("./assets/images/background-mobile.png") no-repeat center top; }
+}

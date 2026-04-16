@@ -1,0 +1,99 @@
+.generated-section.column {
+  justify-content: flex-start;
+  margin-top: clamp(2rem, 5vh, 100px);
+  padding-bottom: 50px;
+}
+
+.generated-section h2, .generated-section h3 {
+  text-align: center;
+  max-width: 650px;
+}
+
+.generated-section h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.generated-section h3 {
+  font-size: 1.25rem;
+  color: hsl(252, 6%, 83%);
+  margin-bottom: 30px;
+}
+
+#ticket-card {
+  width: clamp(350px, 90%, 650px);
+  position: relative; 
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+}
+
+#ticket-event-info, #ticket-user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 75%;
+  padding-left: 30px;
+}
+
+#ticket-event-info {
+  margin-bottom: 25px;
+}
+
+#ticket-event-info b {
+  font-size: 0.9rem;
+  color: hsl(252, 6%, 83%);
+}
+
+#ticket-user-info .ticketAvatar {
+  width: clamp(30px, 3.75rem, 120px);
+  height: clamp(30px, 3.75rem, 120px);
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid hsl(0, 0%, 100%);
+}
+
+#user-details #ticketName {
+  font-size: 1.25rem;
+  color: hsl(0, 0%, 100%);
+  margin-bottom: 5px;
+}
+
+#user-details #ticketGithub {
+  font-size: 0.9rem;
+  color: hsl(252, 6%, 83%);
+}
+
+#user-details #ticketGithub::before {
+  content: url('./assets/images/icon-github.svg');
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#ticket-number-container {
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+#ticketNumber {
+  color: hsl(252, 6%, 83%);
+  font-size: 1rem;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transform: rotate(90deg);
+  width: max-content;
+  text-align: center;
+}

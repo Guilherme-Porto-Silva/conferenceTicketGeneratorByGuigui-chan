@@ -1,0 +1,6 @@
+@media screen and (min-width: 768px) {
+
+    body{ background: url("./assets/images/background-desktop.png") no-repeat center top; }
+    
+    #pslb-desktop { display: block; }
+}

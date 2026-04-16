@@ -1,0 +1,6 @@
+@media screen and (max-width: 769px) {
+
+    body{ background: url("./assets/images/background-tablet.png") no-repeat center top; }
+    
+    #pslb-mobile-tablet { display: block; }
+}

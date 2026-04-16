@@ -1,0 +1,31 @@
+body { color: hsl(245, 15%, 58%); }
+
+b { color: hsl(0, 0%, 100%); }
+
+label { color: hsl(252, 6%, 83%); }
+
+input{
+    background-color: hsl(245, 19%, 35%);
+    color: hsl(0, 0%, 100%);
+}
+
+input, .uploadingSpace { border-color: #ccc; }
+
+button {
+    border-color: hsl(0, 0%, 100%);
+    background-color: hsl(7, 71%, 60%);
+    color: hsl(248, 70%, 10%);
+}
+
+a, .displaysFullName{
+    background: linear-gradient(to right hsl(7, 86%, 67%) hsl(0, 0%, 100%));
+    background-clip: text;
+}
+
+a:hover{
+    background: linear-gradient(to right gold hsl(7, 86%, 67%));
+    background-clip: text;
+    transition: 1s;
+}
+
+.uploadingSpace img, .ticketNumber { color: hsl(7, 86%, 67%); }
